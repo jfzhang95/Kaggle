@@ -9,8 +9,13 @@ import numpy as np
 import pandas as pd
 from sklearn.feature_extraction import DictVectorizer
 from logRegres import *
-from LoadData import X_train, X_test, Y_train
+from LoadData import X_train, X_test, Y_train, test
+from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
+from sklearn.cross_validation import cross_val_score
+import csv
 
+# logistic regression
 def logregression(X_train, X_test, Y_train):
     X = []
     Y = []
@@ -35,9 +40,36 @@ def logregression(X_train, X_test, Y_train):
 
     X_test = np.array(X_test)
 
-    predict = logregres_predict(X_test, weights)
+    Y_pred = logregres_predict(X_test, weights)
 
-    print predict
+    return Y_pred
 
-# run
-logregression(X_train, X_test, Y_train)
+# logreg run
+PRED = logregression(X_train, X_test, Y_train)
+# with open('submission.csv', 'wb') as MyFile:
+#     myWriter = csv.writer(MyFile)
+#     myWriter.writerow(["PassengerId", "Survived"])
+#     index = 0
+#     for i in PRED:
+#         tmp = []
+#         tmp.append(test['PassengerId'][index])
+#         tmp.append(int(i))
+#         myWriter.writerow(tmp)
+#         index += 1
+
+
+
+def RandomForest(X_train, Y_train, X_test):
+    rfc = RandomForestClassifier()
+    rfc.fit(X_train, Y_train)
+    print cross_val_score(rfc, X_train, Y_train, cv=5).mean()
+    Y_pred = rfc.predict(X_test)
+    return Y_pred
+
+# RF run
+# PRED = RandomForest(X_train, Y_train, X_test)
+
+
+
+def XGBClissifier():
+    pass
