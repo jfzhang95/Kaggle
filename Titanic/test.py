@@ -5,9 +5,7 @@
 @author: James Zhang
 """
 
-import numpy as np
-from LoadData import X_train, X_test, Y_train, test
-import csv
+
 from methods import *
 
 
@@ -19,9 +17,9 @@ from methods import *
 # RandomForest(X_train, Y_train, X_test)
 
 # XGB run
-XGBoosting(X_train, Y_train, X_test)
+# XGBoosting(X_train, Y_train, X_test)
 
-
+KNN(X_train, Y_train, X_test)
 
 
 
