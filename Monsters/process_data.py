@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+from sklearn.model_selection import train_test_split
 
 df = pd.read_csv('train.csv')
 df_test = pd.read_csv('test.csv')
